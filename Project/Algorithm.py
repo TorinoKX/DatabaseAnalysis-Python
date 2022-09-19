@@ -38,8 +38,8 @@ class Algorithm():
 
 
     for offence in offenceSet:
-      if offence.OFFENCE_CODE not in reportData:
-        reportData[offence.OFFENCE_CODE] = 0
-      reportData[offence.OFFENCE_CODE] += 1
+      if offence.OFFENCE_MONTH not in reportData:
+        reportData[offence.OFFENCE_MONTH] = 0
+      reportData[offence.OFFENCE_MONTH] += 1
 
     return reportData
