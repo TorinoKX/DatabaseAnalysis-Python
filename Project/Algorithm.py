@@ -1,5 +1,4 @@
 import pandas as pd
-import datetime
 
 class Algorithm():
 
@@ -9,13 +8,19 @@ class Algorithm():
 
 
   def allOffence(self, startDate, endDate, isMobile):
-    return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == isMobile)]
+    if(isMobile):
+      return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == "Y")]
+    else:
+      return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate)]
 
 
   def distribution(self, startDate, endDate, isMobile):
     distDict = {}
 
-    offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == isMobile)]
+    if(isMobile):
+      offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == "Y")]
+    else:
+      offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate)]
 
     for index, row in offenceSet.iterrows():
       if row["OFFENCE_CODE"] not in distDict:
@@ -25,20 +30,26 @@ class Algorithm():
     return distDict
 
 
-  def involveRadCam(self, startDate, endDate, isMobile):
-    # print((self.df[self.df["CAMERA_IND"] == "Y"]))
-    return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == isMobile) & (self.df["CAMERA_IND"] == "Y")]
+  def involveRadCam(self, startDate, endDate, isMobile): 
+    if(isMobile):
+      return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["CAMERA_IND"] == "Y") & (self.df["MOBILE_PHONE_IND"] == "Y")]
+    else:
+      return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["CAMERA_IND"] == "Y")]
 
 
-  def singleOffenceTrend(self, startDate, endDate, offenceCode, isMobile):
+  def singleOffenceTrend(self, startDate, endDate, isMobile, offenceCode = 0):
     reportData = {}
 
-
-    if offenceCode:
-      offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == isMobile) & (self.df["OFFENCE_CODE"] == offenceCode)]
+    if(isMobile):
+      if offenceCode:
+        offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["OFFENCE_CODE"] == offenceCode) & (self.df["MOBILE_PHONE_IND"] == "Y")]
+      else:
+        offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == "Y")]
     else:
-      offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["MOBILE_PHONE_IND"] == isMobile)]
-
+      if offenceCode:
+        offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["OFFENCE_CODE"] == offenceCode)]
+      else:
+        offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate)]
 
     for index, row in offenceSet.iterrows():
       if row["OFFENCE_MONTH"] not in reportData:
