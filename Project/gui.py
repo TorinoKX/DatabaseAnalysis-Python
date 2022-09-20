@@ -7,8 +7,12 @@ from datetime import date
 class Gui(Tk):
   def __init__(self):
     super().__init__()
-    self.drawMainFrame()
     
+    self.title("NSW Traffic Penalty Analysis Tool")
+    self.geometry("900x500")
+
+    self.drawMainFrame()
+  
     self.drawTitleFrame()
     self.drawTitleLabel()
     self.drawNameLabel()
@@ -19,6 +23,7 @@ class Gui(Tk):
     self.drawDropDown()
     self.drawStartDateEntry()
     self.drawEndDateEntry()
+    self.drawIsMobileInvolved()
     self.drawSubmitButton()
 
 
@@ -91,7 +96,12 @@ class Gui(Tk):
     self.startDateEntry.config(mindate=date(2010, 1, 1), maxdate=date(
     2018, 1, 1), date_pattern="dd/MM/yyyy")
     self.startDateEntry.set_date(date(2010, 1, 1))
-    
+
+  def drawIsMobileInvolved(self):
+    self.mobileBool = IntVar()
+    self.isMobileInvolved = Checkbutton(self.inputFrame, text="Limit to mobile phone usage?", variable=self.mobileBool, onvalue=1, offvalue=0)
+    self.isMobileInvolved.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky=E)
+
   def drawEndDateEntry(self):
     self.endDateEntry = DateEntry(self.inputFrame)
     self.endDateEntry.grid(row=2, column=1, padx=5, pady=5, sticky=E)
@@ -101,4 +111,4 @@ class Gui(Tk):
     
   def drawSubmitButton(self):
     self.submitButton = Button(self.inputFrame, text="Submit")
-    self.submitButton.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
+    self.submitButton.grid(row=4, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
