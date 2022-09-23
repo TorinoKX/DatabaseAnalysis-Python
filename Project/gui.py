@@ -7,12 +7,18 @@ from datetime import date
 class Gui(Tk):
   def __init__(self):
     super().__init__()
-    
+    self.results = False
     self.title("NSW Traffic Penalty Analysis Tool")
     self.geometry("900x500")
 
     self.drawMainFrame()
-  
+    if self.results == False:
+      self.drawMainScreen()
+    else:
+      self.drawResultsScreen()
+
+
+  def drawMainScreen(self):
     self.drawTitleFrame()
     self.drawTitleLabel()
     self.drawNameLabel()
@@ -26,8 +32,40 @@ class Gui(Tk):
     self.drawIsMobileInvolved()
     self.drawSubmitButton()
 
+  def drawResultsScreen(self, plot, dataframe):
+    self.drawResultsFrame()
+    if (dataframe):
+      self.drawResultsTable(dataframe)
+    if (plot):
+      self.drawResultsPlot(plot)
+    self.drawReturnButton()
+    self.columns = ()
 
 
+  def drawResultsFrame(self):
+    self.resultsFrame = Frame(self.mainFrame, )
+    self.resultsFrame.grid(row=0, column=0, padx=5, pady=5, sticky=NSEW)
+
+  def drawResultsTable(self, dataframe):
+    h = Scrollbar(self.resultsFrame, orient="horizontal")
+    h.pack(side=BOTTOM, fill=X)
+    v = Scrollbar(self.resultsFrame)
+    v.pack(side=RIGHT, fill=Y)
+
+    self.resultsTable = Treeview(self.resultsFrame, xscrollcommand = h.set, yscrollcommand = v.set)
+    self.resultsTable['columns'] = self.columns
+    self.resultsTable.column("#0", width=0, stretch=NO)
+    self.resultsTable.heading("#0", text="", anchor=CENTER)
+    for column in self.columns:
+      self.resultsTable.column(column, anchor=CENTER, width=80)
+      self.resultsTable.heading(column, text=column, anchor=CENTER)
+
+  def drawResultsPlot(self, plot):
+    pass
+    
+  def drawReturnButton(self):
+    pass
+      
   def drawMainFrame(self):
     self.mainFrame = Frame(self)
     self.mainFrame.pack(fill="both", expand=True, padx=30, pady=30)
@@ -112,3 +150,6 @@ class Gui(Tk):
   def drawSubmitButton(self):
     self.submitButton = Button(self.inputFrame, text="Submit")
     self.submitButton.grid(row=4, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
+
+  def submitButtonHandler(self):
+    pass
