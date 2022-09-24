@@ -123,9 +123,9 @@ class Gui(Tk):
         "Distribution of penalties by code",
         "Trend of penalties over time"
     ]
-    reportVar = StringVar(self.inputFrame)
-    reportVar.set(reportOptions[0])
-    self.reportEntry = OptionMenu(self.inputFrame, reportVar, *reportOptions)
+    self.reportVar = StringVar(self.inputFrame)
+    self.reportVar.set(reportOptions[0])
+    self.reportEntry = OptionMenu(self.inputFrame, self.reportVar, *reportOptions)
     self.reportEntry.grid(row=0, column=1, padx=5, pady=5, sticky=E)
 
   def drawStartDateEntry(self):
@@ -148,8 +148,12 @@ class Gui(Tk):
     self.endDateEntry.set_date(date(2018, 1, 1))
     
   def drawSubmitButton(self):
-    self.submitButton = Button(self.inputFrame, text="Submit")
+    self.submitButton = Button(self.inputFrame, text="Submit", command=self.submitButtonHandler)
     self.submitButton.grid(row=4, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
 
   def submitButtonHandler(self):
-    pass
+    start_Date = date(self.startDateEntry.get_date())
+    end_Date = date(self.endDateEntry.get_date())
+    isMobile = self.mobileBool.get()
+    reportOption = self.reportVar.get()
+    print(f"start_date: {start_Date}, end_Date: {end_Date}, isMobile: {isMobile}, reportOption: {reportOption}")
