@@ -1,10 +1,10 @@
 import pandas as pd
-
+import datetime as dt
 class Algorithm():
 
   def __init__(self, df):
     self.df = df
-    self.df['OFFENCE_MONTH']= pd.to_datetime(df['OFFENCE_MONTH'])
+    self.df['OFFENCE_MONTH']= pd.to_datetime(df['OFFENCE_MONTH'],dayfirst=True).dt.date
 
 
   def allOffence(self, startDate, endDate, isMobile):
@@ -23,9 +23,9 @@ class Algorithm():
       offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate)]
 
     for index, row in offenceSet.iterrows():
-      if row["OFFENCE_CODE"] not in distDict:
-        distDict[row["OFFENCE_CODE"]] = 0
-      distDict[row["OFFENCE_CODE"]] += 1
+      if row["OFFENCE_MONTH"] not in distDict:
+        distDict[row["OFFENCE_MONTH"]] = 0
+      distDict[row["OFFENCE_MONTH"]] += 1
 
     return distDict
 
@@ -52,7 +52,7 @@ class Algorithm():
         offenceSet = self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate)]
 
     for index, row in offenceSet.iterrows():
-      if row["OFFENCE_MONTH"] not in reportData:
+      if row["OFFENCE_CODE"] not in reportData:
         reportData[row["OFFENCE_MONTH"]] = 0
       reportData[row["OFFENCE_MONTH"]] += 1
 

@@ -2,14 +2,16 @@ from tkinter import *
 from tkinter.ttk import *
 from tkcalendar import Calendar, DateEntry
 from datetime import date
+import datetime
 
 
 class Gui(Tk):
-  def __init__(self):
+  def __init__(self, parent):
     super().__init__()
     self.results = False
     self.title("NSW Traffic Penalty Analysis Tool")
     self.geometry("900x500")
+    self.parent = parent
 
     self.drawMainFrame()
     if self.results == False:
@@ -117,15 +119,16 @@ class Gui(Tk):
     self.endDate.grid(row=2, column=0, padx=5, pady=5, sticky=W)
 
   def drawDropDown(self):
-    reportOptions = [
+    self.reportOptions = [
+      "",
         "All penalties in a period",
         "All penalties in a period involving radar/camera",
         "Distribution of penalties by code",
         "Trend of penalties over time"
     ]
     self.reportVar = StringVar(self.inputFrame)
-    self.reportVar.set(reportOptions[0])
-    self.reportEntry = OptionMenu(self.inputFrame, self.reportVar, *reportOptions)
+    self.reportVar.set(self.reportOptions[1])
+    self.reportEntry = OptionMenu(self.inputFrame, self.reportVar, *self.reportOptions)
     self.reportEntry.grid(row=0, column=1, padx=5, pady=5, sticky=E)
 
   def drawStartDateEntry(self):
@@ -152,8 +155,10 @@ class Gui(Tk):
     self.submitButton.grid(row=4, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
 
   def submitButtonHandler(self):
-    start_Date = date(self.startDateEntry.get_date())
-    end_Date = date(self.endDateEntry.get_date())
+    startDate = self.startDateEntry.get_date()
+    endDate = self.endDateEntry.get_date()
     isMobile = self.mobileBool.get()
-    reportOption = self.reportVar.get()
-    print(f"start_date: {start_Date}, end_Date: {end_Date}, isMobile: {isMobile}, reportOption: {reportOption}")
+    reportID = self.reportOptions.index(self.reportVar.get())
+    # print(f"start_date: {startDate}, end_Date: {endDate}, isMobile: {isMobile}, reportOption: {reportID}")
+    self.parent.callAlgorithm(startDate, endDate, isMobile, reportID)
+    
