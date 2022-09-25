@@ -9,7 +9,7 @@ class Controller():
         self.root = Gui(self)
         self.root.mainloop()
     
-    def callAlgorithm(self,startDate, endDate, isMobile, reportID, offenceCode = 770):
+    def callAlgorithm(self,startDate, endDate, isMobile, reportID, offenceCode = 0):
       self.report = None
       if reportID == 1:
         output = Algorithm(self.dataset.getData()).allOffence(startDate, endDate, isMobile)
