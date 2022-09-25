@@ -1,24 +1,24 @@
 from tkinter import *
+from tkinter import messagebox
 from tkinter.ttk import *
 from tkcalendar import Calendar, DateEntry
 from datetime import date
-import datetime
+import matplotlib
+matplotlib.use('TkAgg')
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg,
+    NavigationToolbar2Tk
+)
 
 
 class Gui(Tk):
   def __init__(self, parent):
     super().__init__()
-    self.results = False
     self.title("NSW Traffic Penalty Analysis Tool")
     self.geometry("900x500")
     self.parent = parent
-
     self.drawMainFrame()
-    if self.results == False:
-      self.drawMainScreen()
-    else:
-      self.drawResultsScreen()
-
+    self.drawMainScreen()
 
   def drawMainScreen(self):
     self.drawTitleFrame()
@@ -34,14 +34,6 @@ class Gui(Tk):
     self.drawIsMobileInvolved()
     self.drawSubmitButton()
 
-  def drawResultsScreen(self, plot, dataframe):
-    self.drawResultsFrame()
-    if (dataframe):
-      self.drawResultsTable(dataframe)
-    if (plot):
-      self.drawResultsPlot(plot)
-    self.drawReturnButton()
-    self.columns = ()
 
 
   def drawResultsFrame(self):
@@ -62,11 +54,8 @@ class Gui(Tk):
       self.resultsTable.column(column, anchor=CENTER, width=80)
       self.resultsTable.heading(column, text=column, anchor=CENTER)
 
-  def drawResultsPlot(self, plot):
-    pass
-    
   def drawReturnButton(self):
-    pass
+      pass
       
   def drawMainFrame(self):
     self.mainFrame = Frame(self)
@@ -123,8 +112,8 @@ class Gui(Tk):
       "",
         "All penalties in a period",
         "All penalties in a period involving radar/camera",
-        "Distribution of penalties by code",
-        "Trend of penalties over time"
+        "Distribution of Penalties over time Grouped by Offence Code",
+        "Trend of Specific Offence Code over Time"
     ]
     self.reportVar = StringVar(self.inputFrame)
     self.reportVar.set(self.reportOptions[1])
@@ -134,9 +123,9 @@ class Gui(Tk):
   def drawStartDateEntry(self):
     self.startDateEntry = DateEntry(self.inputFrame)
     self.startDateEntry.grid(row=1, column=1, padx=5, pady=5, sticky=E)
-    self.startDateEntry.config(mindate=date(2010, 1, 1), maxdate=date(
+    self.startDateEntry.config(mindate=date(2012,3, 1), maxdate=date(
     2018, 1, 1), date_pattern="dd/MM/yyyy")
-    self.startDateEntry.set_date(date(2010, 1, 1))
+    self.startDateEntry.set_date(date(2013, 3, 1))
 
   def drawIsMobileInvolved(self):
     self.mobileBool = IntVar()
@@ -146,9 +135,9 @@ class Gui(Tk):
   def drawEndDateEntry(self):
     self.endDateEntry = DateEntry(self.inputFrame)
     self.endDateEntry.grid(row=2, column=1, padx=5, pady=5, sticky=E)
-    self.endDateEntry.config(mindate=date(2010, 1, 1), maxdate=date(
+    self.endDateEntry.config(mindate=date(2012,3, 1), maxdate=date(
     2018, 1, 1), date_pattern="dd/MM/yyyy")
-    self.endDateEntry.set_date(date(2018, 1, 1))
+    self.endDateEntry.set_date(date(2013, 4, 1))
     
   def drawSubmitButton(self):
     self.submitButton = Button(self.inputFrame, text="Submit", command=self.submitButtonHandler)
@@ -161,4 +150,11 @@ class Gui(Tk):
     reportID = self.reportOptions.index(self.reportVar.get())
     # print(f"start_date: {startDate}, end_Date: {endDate}, isMobile: {isMobile}, reportOption: {reportID}")
     self.parent.callAlgorithm(startDate, endDate, isMobile, reportID)
-    
+  
+  def resultsWindow(self, plot):
+    resultsWindow = Toplevel(self)
+    resultsWindow.geometry("900x500")
+    resultsWindow.title("Results")
+    self.chart = FigureCanvasTkAgg(plot, resultsWindow)
+    NavigationToolbar2Tk(self.chart, resultsWindow)
+    self.chart.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)

@@ -28,7 +28,7 @@ class Algorithm():
         distDict[row["OFFENCE_CODE"]] = 0
       distDict[row["OFFENCE_CODE"]] += 1
 
-    print(distDict)
+    # print(distDict)
     return distDict
 
   #Similar to allOffence but only returns offences involving radar or camera, can also be limited to offences involving mobile phone usage (Doesn't return anything if limited to mobile phone usage as there are no phone detection cameras during the reporting period of the dataset)
@@ -58,5 +58,5 @@ class Algorithm():
         reportData[row["OFFENCE_MONTH"]] = 0
       reportData[row["OFFENCE_MONTH"]] += 1
 
-    print(reportData)
+    # print(reportData)
     return reportData

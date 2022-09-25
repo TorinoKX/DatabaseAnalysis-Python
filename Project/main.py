@@ -22,7 +22,7 @@ class Controller():
         output = Algorithm(self.dataset.getData()).singleOffenceTrend(startDate, endDate, isMobile, offenceCode)
         # print(output)
       self.report = Report(output, self.root)
-
+      self.root.resultsWindow(self.report.generatePlot())
     
     
 

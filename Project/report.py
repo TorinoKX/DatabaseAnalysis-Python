@@ -1,28 +1,24 @@
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class Report():
 
   def __init__(self, reportData, root):
     self.root = root
     self.reportData = reportData
-    if type(reportData) == dict:
-      self.generatePlot()
   
   def generatePlot(self):
-    all_values = self.reportData.values()
-    all_keys = self.reportData.keys()
+    all_values = [x for x in self.reportData.values() if x > 0.01* sum(self.reportData.values()) ]
+    all_keys = [str(x) for x in self.reportData.keys() if self.reportData[x] > 0.01*sum(self.reportData.values())]
 
-    figure = plt.figure(figsize=(10,10), dpi=200)
-    axes = figure.add_axes([0,0,1,1])
-    axes.bar(all_keys, all_values)
-    axes.set_title('Insert Title Here')
-    axes.xaxis.set_label("XaxisLabel")
-    axes.yaxis.set_label("YaxisLabel")
-    # figure.savefig('testfigure.png', bbox_inches='tight')
-  
-    chart_type = FigureCanvasTkAgg(figure, self.root)
-    chart_type.get_tk_widget().pack()
+    figure = plt.figure(figsize=(5,5), dpi=100)
+    figure.add_subplot(111).bar(all_keys, all_values)
+    return figure
+    # axes = figure.add_axes([0,0,1,1])
+    # axes.bar(all_keys, all_values)
+    # axes.set_title('Insert Title Here')
+    # axes.xaxis.set_label("XaxisLabel")
+    # axes.yaxis.set_label("YaxisLabel")
+
 
   def reset(self):
     self.reportData = []
