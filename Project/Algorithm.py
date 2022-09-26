@@ -1,4 +1,3 @@
-from time import strftime
 import pandas as pd
 import datetime as dt
 

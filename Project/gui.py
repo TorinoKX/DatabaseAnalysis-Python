@@ -2,11 +2,10 @@ from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
     NavigationToolbar2Tk
 )
-from pandastable import TableModel, Table
+from pandastable import Table
 from tkinter import *
-from tkinter import messagebox
 from tkinter.ttk import *
-from tkcalendar import Calendar, DateEntry
+from tkcalendar import DateEntry
 from datetime import date
 import matplotlib
 matplotlib.use('TkAgg')
@@ -36,28 +35,6 @@ class Gui(Tk):
         self.drawEndDateEntry()
         self.drawIsMobileInvolved()
         self.drawSubmitButton()
-
-    def drawResultsFrame(self):
-        self.resultsFrame = Frame(self.mainFrame, )
-        self.resultsFrame.grid(row=0, column=0, padx=5, pady=5, sticky=NSEW)
-
-    def drawResultsTable(self, dataframe):
-        h = Scrollbar(self.resultsFrame, orient="horizontal")
-        h.pack(side=BOTTOM, fill=X)
-        v = Scrollbar(self.resultsFrame)
-        v.pack(side=RIGHT, fill=Y)
-
-        self.resultsTable = Treeview(
-            self.resultsFrame, xscrollcommand=h.set, yscrollcommand=v.set)
-        self.resultsTable['columns'] = self.columns
-        self.resultsTable.column("#0", width=0, stretch=NO)
-        self.resultsTable.heading("#0", text="", anchor=CENTER)
-        for column in self.columns:
-            self.resultsTable.column(column, anchor=CENTER, width=80)
-            self.resultsTable.heading(column, text=column, anchor=CENTER)
-
-    def drawReturnButton(self):
-        pass
 
     def drawMainFrame(self):
         self.mainFrame = Frame(self)
@@ -132,7 +109,7 @@ class Gui(Tk):
         self.codeSelection.config(validate="key", validatecommand=(reg, "%P"))
 
     def dropdownUpdated(self, event):
-        if (self.reportOptions.index(self.reportVar.get()) == 4):
+        if (self.reportOptions.index(event) == 4):
             self.codeSelection.config(state=NORMAL)
         else:
             self.codeSelection.config(state=DISABLED)
@@ -202,6 +179,6 @@ class Gui(Tk):
         resultsTableWindow = Toplevel(self)
         resultsTableWindow.geometry("900x500")
         resultsTableWindow.title("Results")
-        self.resultsTable = pt = Table(resultsTableWindow, dataframe=df,
+        pt = Table(resultsTableWindow, dataframe=df,
                                        showtoolbar=False, showstatusbar=True)
         pt.show()
