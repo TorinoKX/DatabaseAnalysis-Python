@@ -18,7 +18,15 @@ class Report():
             all_keys = [str(x) for x in self.reportData.keys()]
 
         figure = plt.figure(figsize=(5, 5), dpi=100)
-        figure.add_subplot(111).bar(all_keys, all_values)
+        ax = figure.add_subplot(111)
+        if isTrend:
+            ax.plot(all_keys, all_values, marker="s")
+        else:
+            ax.bar(all_keys, all_values)
+
+        for tick in ax.get_xticklabels():
+            tick.set_rotation(45)
+
         return figure
         # axes = figure.add_axes([0,0,1,1])
         # axes.bar(all_keys, all_values)
