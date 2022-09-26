@@ -11,7 +11,6 @@ class Report():
     def generateTkinterTable(self):
         return self.reportData
 
-
     def generatePlot(self, isTrend):
         if not isTrend:
             all_values = [x for x in self.reportData.values(

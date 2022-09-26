@@ -187,7 +187,8 @@ class Gui(Tk):
         reportID = self.reportOptions.index(self.reportVar.get())
         offenceCode = self.codeSelectionText.get()
         # print(f"start_date: {startDate}, end_Date: {endDate}, isMobile: {isMobile}, reportOption: {reportID}")
-        self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(offenceCode) if offenceCode else None)
+        self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(
+            offenceCode) if offenceCode else None)
 
     def resultsPlotWindow(self, plot):
         resultsPlotWindow = Toplevel(self)
@@ -202,5 +203,5 @@ class Gui(Tk):
         resultsTableWindow.geometry("900x500")
         resultsTableWindow.title("Results")
         self.resultsTable = pt = Table(resultsTableWindow, dataframe=df,
-                                    showtoolbar=True, showstatusbar=True)
+                                       showtoolbar=False, showstatusbar=True)
         pt.show()

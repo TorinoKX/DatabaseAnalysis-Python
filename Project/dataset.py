@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 class Dataset:
     def __init__(self):
         self.loadedData = self.loadCSVData("data\penalty_data_set_2.csv")
