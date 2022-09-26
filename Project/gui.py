@@ -2,6 +2,7 @@ from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
     NavigationToolbar2Tk
 )
+from pandastable import TableModel, Table
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import *
@@ -188,10 +189,18 @@ class Gui(Tk):
         # print(f"start_date: {startDate}, end_Date: {endDate}, isMobile: {isMobile}, reportOption: {reportID}")
         self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(offenceCode) if offenceCode else None)
 
-    def resultsWindow(self, plot):
-        resultsWindow = Toplevel(self)
-        resultsWindow.geometry("900x500")
-        resultsWindow.title("Results")
-        self.chart = FigureCanvasTkAgg(plot, resultsWindow)
-        NavigationToolbar2Tk(self.chart, resultsWindow)
+    def resultsPlotWindow(self, plot):
+        resultsPlotWindow = Toplevel(self)
+        resultsPlotWindow.geometry("900x500")
+        resultsPlotWindow.title("Results")
+        self.chart = FigureCanvasTkAgg(plot, resultsPlotWindow)
+        NavigationToolbar2Tk(self.chart, resultsPlotWindow)
         self.chart.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+    def resultsTableWindow(self, df):
+        resultsTableWindow = Toplevel(self)
+        resultsTableWindow.geometry("900x500")
+        resultsTableWindow.title("Results")
+        self.resultsTable = pt = Table(resultsTableWindow, dataframe=df,
+                                    showtoolbar=True, showstatusbar=True)
+        pt.show()

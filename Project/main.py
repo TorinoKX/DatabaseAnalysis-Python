@@ -28,9 +28,11 @@ class Controller():
             # print(output)
         self.report = Report(output, self.root)
         if reportID == 3:
-            self.root.resultsWindow(self.report.generatePlot(isTrend=False))
+            self.root.resultsPlotWindow(self.report.generatePlot(isTrend=False))
         if reportID == 4:
-            self.root.resultsWindow(self.report.generatePlot(isTrend=True))
+            self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True))
+        if (reportID == 1 or reportID == 2):
+            self.root.resultsTableWindow(self.report.generateTkinterTable())
 
 
 program = Controller()
