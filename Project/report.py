@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
 
 
 class Report():
@@ -23,6 +24,8 @@ class Report():
             ax.plot(all_keys, all_values, marker="s")
         else:
             ax.bar(all_keys, all_values)
+
+        ax.yaxis.set_major_locator(MaxNLocator(integer=True))
 
         for tick in ax.get_xticklabels():
             tick.set_rotation(45)

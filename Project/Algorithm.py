@@ -1,3 +1,4 @@
+from time import strftime
 import pandas as pd
 import datetime as dt
 
@@ -50,7 +51,7 @@ class Algorithm():
         delta = dt.timedelta(days=1)
         while datePosition <= endDate:
             if (datePosition.day == 1):
-                reportData[datePosition] = 0
+                reportData[datePosition.strftime("%b, %y")] = 0
             datePosition += delta
 
         if (isMobile):
@@ -69,6 +70,6 @@ class Algorithm():
                     self.df["OFFENCE_MONTH"] <= endDate)]
 
         for index, row in offenceSet.iterrows():
-            reportData[row["OFFENCE_MONTH"]] += 1
+            reportData[row["OFFENCE_MONTH"].strftime("%b, %y")] += 1
 
         return reportData
