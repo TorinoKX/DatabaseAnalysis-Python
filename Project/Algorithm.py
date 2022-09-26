@@ -46,6 +46,12 @@ class Algorithm():
     # Returns a dictionary of the count of offences per month within a selected date range, can be limited to a selected offenceCode and/or offences involving mobile phone usage
     def singleOffenceTrend(self, startDate, endDate, isMobile, offenceCode):
         reportData = {}
+        datePosition = startDate
+        delta = dt.timedelta(days=1)
+        while datePosition <= endDate:
+            if (datePosition.day == 1):
+                reportData[datePosition] = 0
+            datePosition += delta
 
         if (isMobile):
             if (offenceCode != None):
@@ -63,9 +69,6 @@ class Algorithm():
                     self.df["OFFENCE_MONTH"] <= endDate)]
 
         for index, row in offenceSet.iterrows():
-            if row["OFFENCE_MONTH"] not in reportData:
-                reportData[row["OFFENCE_MONTH"]] = 0
             reportData[row["OFFENCE_MONTH"]] += 1
 
-        # print(reportData)
         return reportData

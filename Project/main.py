@@ -27,7 +27,10 @@ class Controller():
                 startDate, endDate, isMobile, offenceCode)
             # print(output)
         self.report = Report(output, self.root)
-        self.root.resultsWindow(self.report.generatePlot())
+        if reportID == 3:
+            self.root.resultsWindow(self.report.generatePlot(isTrend=False))
+        if reportID == 4:
+            self.root.resultsWindow(self.report.generatePlot(isTrend=True))
 
 
 program = Controller()

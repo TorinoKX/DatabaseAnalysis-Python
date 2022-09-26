@@ -115,28 +115,28 @@ class Gui(Tk):
     def drawCodeSelection(self):
         def testInput(changedVar):
             if changedVar.isdigit():
-              return True
+                return True
             elif changedVar == "":
-              return True
+                return True
             else:
-              return False
+                return False
 
         self.codeSelectionText = StringVar()
 
-        self.codeSelection = Entry(self.inputFrame , textvariable=self.codeSelectionText, state=DISABLED)
+        self.codeSelection = Entry(
+            self.inputFrame, textvariable=self.codeSelectionText, state=DISABLED)
         self.codeSelection.grid(row=1, column=1, padx=5, pady=5, sticky=E)
         reg = self.inputFrame.register(testInput)
 
         self.codeSelection.config(validate="key", validatecommand=(reg, "%P"))
 
     def dropdownUpdated(self, event):
-          if (self.reportOptions.index(self.reportVar.get()) == 4):
+        if (self.reportOptions.index(self.reportVar.get()) == 4):
             self.codeSelection.config(state=NORMAL)
-          else:
+        else:
             self.codeSelection.config(state=DISABLED)
 
     def drawDropDown(self):
-        
 
         self.reportOptions = [
             "",
@@ -155,16 +155,16 @@ class Gui(Tk):
     def drawStartDateEntry(self):
         self.startDateEntry = DateEntry(self.inputFrame)
         self.startDateEntry.grid(row=2, column=1, padx=5, pady=5, sticky=E)
-        self.startDateEntry.config(mindate=date(2012, 3, 1), maxdate=date(
-            2018, 1, 1), date_pattern="dd/MM/yyyy")
-        self.startDateEntry.set_date(date(2013, 3, 1))
+        self.startDateEntry.config(mindate=date(2012, 1, 1), maxdate=date(
+            2017, 11, 1), date_pattern="dd/MM/yyyy")
+        self.startDateEntry.set_date(date(2012, 1, 1))
 
     def drawEndDateEntry(self):
         self.endDateEntry = DateEntry(self.inputFrame)
         self.endDateEntry.grid(row=3, column=1, padx=5, pady=5, sticky=E)
-        self.endDateEntry.config(mindate=date(2012, 3, 1), maxdate=date(
-            2018, 1, 1), date_pattern="dd/MM/yyyy")
-        self.endDateEntry.set_date(date(2013, 4, 1))
+        self.endDateEntry.config(mindate=date(2012, 1, 1), maxdate=date(
+            2017, 11, 1), date_pattern="dd/MM/yyyy")
+        self.endDateEntry.set_date(date(2017, 11, 1))
 
     def drawIsMobileInvolved(self):
         self.mobileBool = IntVar()
@@ -177,7 +177,7 @@ class Gui(Tk):
         self.submitButton = Button(
             self.inputFrame, text="Submit", command=self.submitButtonHandler)
         self.submitButton.grid(
-            row=4, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
+            row=5, column=0, columnspan=2, padx=5, pady=5, sticky=NSEW)
 
     def submitButtonHandler(self):
         startDate = self.startDateEntry.get_date()
@@ -186,7 +186,7 @@ class Gui(Tk):
         reportID = self.reportOptions.index(self.reportVar.get())
         offenceCode = self.codeSelectionText.get()
         # print(f"start_date: {startDate}, end_Date: {endDate}, isMobile: {isMobile}, reportOption: {reportID}")
-        self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(offenceCode))
+        self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(offenceCode) if offenceCode else None)
 
     def resultsWindow(self, plot):
         resultsWindow = Toplevel(self)

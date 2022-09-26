@@ -7,11 +7,15 @@ class Report():
         self.root = root
         self.reportData = reportData
 
-    def generatePlot(self):
-        all_values = [x for x in self.reportData.values(
-        ) if x > 0.01 * sum(self.reportData.values())]
-        all_keys = [str(x) for x in self.reportData.keys(
-        ) if self.reportData[x] > 0.01*sum(self.reportData.values())]
+    def generatePlot(self, isTrend):
+        if not isTrend:
+            all_values = [x for x in self.reportData.values(
+            ) if x > 0.01 * sum(self.reportData.values())]
+            all_keys = [str(x) for x in self.reportData.keys(
+            ) if self.reportData[x] > 0.01*sum(self.reportData.values())]
+        else:
+            all_values = [x for x in self.reportData.values()]
+            all_keys = [str(x) for x in self.reportData.keys()]
 
         figure = plt.figure(figsize=(5, 5), dpi=100)
         figure.add_subplot(111).bar(all_keys, all_values)
