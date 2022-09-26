@@ -44,7 +44,7 @@ class Algorithm():
             return self.df.loc[(self.df["OFFENCE_MONTH"] >= startDate) & (self.df["OFFENCE_MONTH"] <= endDate) & (self.df["CAMERA_IND"] == "Y")]
 
     # Returns a dictionary of the count of offences per month within a selected date range, can be limited to a selected offenceCode and/or offences involving mobile phone usage
-    def singleOffenceTrend(self, startDate, endDate, isMobile, offenceCode=None):
+    def singleOffenceTrend(self, startDate, endDate, isMobile, offenceCode):
         reportData = {}
 
         if (isMobile):
