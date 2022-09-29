@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg,
     NavigationToolbar2Tk
@@ -174,11 +175,13 @@ class Gui(Tk):
         self.chart = FigureCanvasTkAgg(plot, resultsPlotWindow)
         NavigationToolbar2Tk(self.chart, resultsPlotWindow)
         self.chart.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        #Closes originally created plot as it has been put onto a canvas. Allows program to correctly exit when closing windows.
+        plt.close('all')
 
     def resultsTableWindow(self, df):
         resultsTableWindow = Toplevel(self)
         resultsTableWindow.geometry("900x500")
         resultsTableWindow.title("Results")
         pt = Table(resultsTableWindow, dataframe=df,
-                                       showtoolbar=False, showstatusbar=True)
+                   showtoolbar=False, showstatusbar=True)
         pt.show()
