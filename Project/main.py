@@ -40,11 +40,11 @@ class Controller():
         self.report = Report(output)
         if reportID == 3:
             self.root.resultsPlotWindow(
-                self.report.generatePlot(isTrend=False), f"Distribution of All Offence Codes between {startDate.strftime('%b, %y')} and {endDate.strftime('%b, %y')}{' Involving a Mobile Device' if isMobile else ''}")
+                self.report.generatePlot(isTrend=False), f"Distribution of All Offence Codes between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}{' Involving a Mobile Device' if isMobile else ''}")
         if reportID == 4:
-            self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True), f"Monthly Trend of {offenceCode if offenceCode else 'All Offence Codes'}{' Involving a Mobile Device ' if isMobile else ''}between {startDate.strftime('%b, %y')} and {endDate.strftime('%b, %y')}")
+            self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True), f"Monthly Trend of {offenceCode if offenceCode else 'All Offences'}{' Involving a Mobile Device ' if isMobile else ''}between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}")
         if (reportID == 1 or reportID == 2):
-            self.root.resultsTableWindow(self.report.getReportData(), f"All offences {'involving radar/camera ' if (reportID == 2) else ''}{startDate.strftime('%b, %y')}between {endDate.strftime('%b, %y')}{' involving a Mobile Device ' if isMobile else ''}")
+            self.root.resultsTableWindow(self.report.getReportData(), f"All offences {'involving radar/camera ' if (reportID == 2) else ''}between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}{' with a Mobile Device ' if isMobile else ''}")
 
         return self.report
 
