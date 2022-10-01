@@ -11,6 +11,16 @@ class Controller():
         self.root.mainloop()
 
     def callAlgorithm(self, startDate, endDate, isMobile, reportID, offenceCode):
+        """
+        It takes in a start date, end date, isMobile, reportID, and offenceCode and then calls the
+        appropriate algorithm and then calls the appropriate report function
+        
+        :param startDate: the start date of the period you want to look at
+        :param endDate: the end date of the period you want to look at
+        :param isMobile: boolean
+        :param reportID: 1, 2, 3, 4
+        :param offenceCode: the offence code of the offence you want to search for
+        """
         self.report = None
         if reportID == 1:
             output = Algorithm(self.dataset.getData()).allOffence(
@@ -33,7 +43,7 @@ class Controller():
         if reportID == 4:
             self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True))
         if (reportID == 1 or reportID == 2):
-            self.root.resultsTableWindow(self.report.generateTkinterTable())
+            self.root.resultsTableWindow(self.report.getReportData())
 
 
 program = Controller()

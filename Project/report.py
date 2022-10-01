@@ -8,19 +8,33 @@ class Report():
         self.root = root
         self.reportData = reportData
 
-    def generateTkinterTable(self):
+    def getReportData(self):
+        """
+        It returns the reportData attribute of the object
+        :return: The reportData
+        """
         return self.reportData
 
     def generatePlot(self, isTrend):
-        if not isTrend:
-            all_values = [x for x in self.reportData.values(
-            ) if x > 0.01 * sum(self.reportData.values())]
-            all_keys = [str(x) for x in self.reportData.keys(
-            ) if self.reportData[x] > 0.01*sum(self.reportData.values())]
-        else:
-            all_values = [x for x in self.reportData.values()]
-            all_keys = [str(x) for x in self.reportData.keys()]
-
+        """
+        It takes a boolean value, if true, the plot will be a line graph. If false, it will be a bar graph.
+        
+        :param isTrend: boolean
+        :return: A figure object
+        """
+        try:
+            if not isTrend:
+                all_values = [x for x in self.reportData.values(
+                ) if x > 0.01 * sum(self.reportData.values())]
+                all_keys = [str(x) for x in self.reportData.keys(
+                ) if self.reportData[x] > 0.01*sum(self.reportData.values())]
+            else:
+                all_values = [x for x in self.reportData.values()]
+                all_keys = [str(x) for x in self.reportData.keys()]
+            print("done with try statement")
+        except:
+            print("cannot access keys or values in outputted report data")
+            return "No report Data"
         figure = plt.figure(figsize=(5, 5), dpi=100)
         ax = figure.add_subplot(111)
         if isTrend:
@@ -34,11 +48,11 @@ class Report():
             tick.set_rotation(45)
 
         return figure
-        # axes = figure.add_axes([0,0,1,1])
-        # axes.bar(all_keys, all_values)
-        # axes.set_title('Insert Title Here')
-        # axes.xaxis.set_label("XaxisLabel")
-        # axes.yaxis.set_label("YaxisLabel")
 
     def reset(self):
+        """
+        It resets the reportData to an empty list.
+        :return: The reportData list.
+        """
         self.reportData = []
+        return self.reportData
