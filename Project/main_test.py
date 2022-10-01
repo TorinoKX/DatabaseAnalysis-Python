@@ -6,7 +6,8 @@ from dataset import Dataset
 import pandas as pd
 import matplotlib.pyplot as plt
 
-algorithm = Algorithm(pd.DataFrame([]))
+testDataFrame = pd.DataFrame([])
+algorithm = Algorithm(testDataFrame)
 
 
 class DatasetTests(unittest.TestCase):
@@ -16,7 +17,7 @@ class DatasetTests(unittest.TestCase):
                          'Testing if dataset loadcsvdata method can accept an invalid path')
 
     def test_getData(self):
-        
+
         self.test_gettingNonExistentData = Dataset()
         self.test_gettingNonExistentData.loadedData = pd.DataFrame([])
         print(self.test_gettingNonExistentData.getData())
@@ -26,19 +27,18 @@ class DatasetTests(unittest.TestCase):
 
 class ReportTest(unittest.TestCase):
     def test_getReportData(self):
-        pass
+        self.assertEqual(
+            type(Report(testDataFrame).getReportData()), type(pd.DataFrame([])))
 
     def test_generatePlot(self):
-        testDataframe = pd.DataFrame([])
-        self.test_report = Report(testDataframe, None)
-        self.assertEqual(self.test_report.generatePlot(None), "No report Data")
+        self.test_report = Report(testDataFrame)
+        self.assertEqual(type(self.test_report.generatePlot('')), plt.Figure)
 
     def test_reset(self):
-        pass
+        self.assertEqual(Report(testDataFrame).reset(), [])
 
 
 class AlgorithmTest(unittest.TestCase):
-
     def test_allOffence(self):
         # Incorrect type start date
         self.assertEqual(type(algorithm.allOffence("a", datetime.date(2012, 1, 1), True)), pd.DataFrame,

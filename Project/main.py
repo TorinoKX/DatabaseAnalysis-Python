@@ -2,6 +2,7 @@ import dataset as Dataset
 from Algorithm import Algorithm
 from report import Report
 from gui import Gui
+import pandas as pd
 
 
 class Controller():
@@ -14,7 +15,7 @@ class Controller():
         """
         It takes in a start date, end date, isMobile, reportID, and offenceCode and then calls the
         appropriate algorithm and then calls the appropriate report function
-        
+
         :param startDate: the start date of the period you want to look at
         :param endDate: the end date of the period you want to look at
         :param isMobile: boolean
@@ -25,18 +26,18 @@ class Controller():
         if reportID == 1:
             output = Algorithm(self.dataset.getData()).allOffence(
                 startDate, endDate, isMobile)
-        if reportID == 2:
+        elif reportID == 2:
             output = Algorithm(self.dataset.getData()).involveRadCam(
                 startDate, endDate, isMobile)
-        if reportID == 3:
+        elif reportID == 3:
             output = Algorithm(self.dataset.getData()).distribution(
                 startDate, endDate, isMobile)
-            # print(output)
-        if reportID == 4:
+        elif reportID == 4:
             output = Algorithm(self.dataset.getData()).singleOffenceTrend(
                 startDate, endDate, isMobile, offenceCode)
-            # print(output)
-        self.report = Report(output, self.root)
+        else:
+            output = pd.DataFrame([])
+        self.report = Report(output)
         if reportID == 3:
             self.root.resultsPlotWindow(
                 self.report.generatePlot(isTrend=False))
@@ -44,6 +45,8 @@ class Controller():
             self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True))
         if (reportID == 1 or reportID == 2):
             self.root.resultsTableWindow(self.report.getReportData())
+
+        return self.report
 
 
 program = Controller()

@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
+import pandas as pd
 
 
 class Report():
 
-    def __init__(self, reportData, root):
-        self.root = root
+    def __init__(self, reportData):
         self.reportData = reportData
 
     def getReportData(self):
@@ -13,7 +13,10 @@ class Report():
         It returns the reportData attribute of the object
         :return: The reportData
         """
-        return self.reportData
+        if not self.reportData.empty:
+            return self.reportData
+        else:
+            return pd.DataFrame([])
 
     def generatePlot(self, isTrend):
         """
@@ -34,7 +37,7 @@ class Report():
             print("done with try statement")
         except:
             print("cannot access keys or values in outputted report data")
-            return "No report Data"
+            return plt.figure()
         figure = plt.figure(figsize=(5, 5), dpi=100)
         ax = figure.add_subplot(111)
         if isTrend:
