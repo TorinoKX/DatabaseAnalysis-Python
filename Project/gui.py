@@ -228,7 +228,7 @@ class Gui(Tk):
         self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(
             offenceCode) if offenceCode else None)
 
-    def resultsPlotWindow(self, plot):
+    def resultsPlotWindow(self, plot, title):
         """
         It takes a plot and puts it onto a canvas in a new window
         
@@ -236,14 +236,14 @@ class Gui(Tk):
         """
         resultsPlotWindow = Toplevel(self)
         resultsPlotWindow.geometry("900x500")
-        resultsPlotWindow.title("Results")
+        resultsPlotWindow.title(title)
         self.chart = FigureCanvasTkAgg(plot, resultsPlotWindow)
         NavigationToolbar2Tk(self.chart, resultsPlotWindow)
         self.chart.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
         #Closes originally created plot as it has been put onto a canvas. Allows program to correctly exit when closing windows.
         plt.close('all')
 
-    def resultsTableWindow(self, df):
+    def resultsTableWindow(self, df, title):
         """
         It creates a new window, and then creates a table in that window using the dataframe that was
         passed to the function.
@@ -252,7 +252,7 @@ class Gui(Tk):
         """
         resultsTableWindow = Toplevel(self)
         resultsTableWindow.geometry("900x500")
-        resultsTableWindow.title("Results")
+        resultsTableWindow.title(title)
         pt = Table(resultsTableWindow, dataframe=df,
                    showtoolbar=False, showstatusbar=True)
         pt.show()
