@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2022-09-25" view-index="0" gantt-divider-location="533" resource-divider-location="300" version="3.2.3240" locale="en_AU">
+    <description/>
+    <view zooming-state="default:5" id="gantt-chart">
+        <field id="tpd11" name="Outline number" width="53" order="0"/>
+        <field id="tpd3" name="Name" width="258" order="1"/>
+        <field id="tpd6" name="Duration" width="42" order="2"/>
+        <field id="tpd4" name="Begin date" width="106" order="3"/>
+        <field id="tpd5" name="End date" width="58" order="4"/>
+        <option id="filter.completedTasks" value="false"/>
+        <timeline>
+            <![CDATA[0]]>
+        </timeline>
+        <option id="color.recent">
+            <![CDATA[#cccccc #ccffcc #ffcccc #ccccff #ffffcc]]>
+        </option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="209" order="0"/>
+        <field id="1" name="Default role" width="85" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="5" name="Preparation" color="#ffffcc" meeting="false" start="2022-08-01" duration="4" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+            <depend id="6" type="2" difference="0" hardness="Strong"/>
+            <task id="0" name="Meet Team" color="#ffffcc" meeting="false" start="2022-08-01" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="1" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="1" name="Meeting to discuss/understad assessment" color="#ffffcc" meeting="false" start="2022-08-02" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="2" type="2" difference="0" hardness="Strong"/>
+                <depend id="3" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="2" name="Assess team member's strengths" color="#ffffcc" meeting="false" start="2022-08-03" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="4" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="3" name="Organise available times for team members" color="#ffffcc" meeting="false" start="2022-08-03" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="4" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="4" name="Discuss ability to complete each dataset task" color="#ffffcc" meeting="false" start="2022-08-04" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="6" name="Planning" color="#ccccff" meeting="false" start="2022-08-05" duration="4" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+            <depend id="7" type="2" difference="0" hardness="Strong"/>
+            <task id="12" name="Select Dataset" color="#ccccff" meeting="false" start="2022-08-05" duration="1" complete="0" thirdDate="2022-08-01" thirdDate-constraint="1" expand="true">
+                <depend id="13" type="2" difference="0" hardness="Strong"/>
+                <depend id="14" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="14" name="Evaluate and Understand data and metadata" color="#ccccff" meeting="false" start="2022-08-08" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="10" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="13" name="Read/Understand documentation for relevant libraries" color="#ccccff" meeting="false" start="2022-08-08" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="10" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="10" name="Assign tasks for each team member" color="#ccccff" meeting="false" start="2022-08-10" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="7" name="Project Plan Development" color="#ffcccc" meeting="false" start="2022-08-11" duration="7" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+            <depend id="8" type="2" difference="0" hardness="Strong"/>
+            <task id="15" name="Describe data background" color="#ffcccc" meeting="false" start="2022-08-11" duration="2" complete="0" thirdDate="2022-08-01" thirdDate-constraint="1" expand="true">
+                <depend id="18" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="20" name="Describe project scope" color="#ffcccc" meeting="false" start="2022-08-11" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="18" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="19" name="Create work breakdown structure" color="#ffcccc" meeting="false" start="2022-08-11" duration="3" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="18" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="18" name="Describe contents of rest of document" color="#ffcccc" meeting="false" start="2022-08-16" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="16" type="2" difference="0" hardness="Strong"/>
+                <depend id="17" type="1" difference="0" hardness="Strong"/>
+            </task>
+            <task id="17" name="Create activity definition and estimation" color="#ffcccc" meeting="false" start="2022-08-16" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="16" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="16" name="create gantt chart" color="#ffcccc" meeting="false" start="2022-08-18" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="8" name="Software Design Development" color="#ccffcc" meeting="false" start="2022-08-23" duration="10" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+            <depend id="9" type="2" difference="0" hardness="Strong"/>
+            <task id="32" name="Describe problem background" color="#ccffcc" meeting="false" start="2022-08-23" duration="1" complete="0" thirdDate="2022-08-03" thirdDate-constraint="1" expand="true">
+                <depend id="31" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="31" name="Describe user requirements" color="#ccffcc" meeting="false" start="2022-08-24" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="30" name="Describe system overview" color="#ccffcc" meeting="false" start="2022-08-23" duration="1" complete="0" thirdDate="2022-08-02" thirdDate-constraint="1" expand="true">
+                <depend id="29" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="29" name="Describe software requirements" color="#ccffcc" meeting="false" start="2022-08-24" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="28" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="28" name="Create software design diagram/flowchart" color="#ccffcc" meeting="false" start="2022-08-25" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="26" type="2" difference="0" hardness="Strong"/>
+                <depend id="27" type="1" difference="0" hardness="Strong"/>
+            </task>
+            <task id="27" name="List all functions within components" color="#ccffcc" meeting="false" start="2022-08-25" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="26" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="26" name="List all data structures and sources" color="#ccffcc" meeting="false" start="2022-08-29" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="25" type="1" difference="0" hardness="Strong"/>
+            </task>
+            <task id="25" name="Diagram the structural design" color="#ccffcc" meeting="false" start="2022-08-29" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="24" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="24" name="Detailed design with psuedocode explaining logic" color="#ccffcc" meeting="false" start="2022-08-31" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="33" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="23" name="Describe the potential benefits" color="#ccffcc" meeting="false" start="2022-08-23" duration="1" complete="0" thirdDate="2022-08-09" thirdDate-constraint="1" expand="true">
+                <depend id="22" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="22" name="Describe use cases and provide use case diagrams" color="#ccffcc" meeting="false" start="2022-08-24" duration="3" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="21" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="21" name="Design user interface" color="#ccffcc" meeting="false" start="2022-08-29" duration="1" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true">
+                <depend id="33" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="33" name="Create visual design, including wireframes" color="#ccffcc" meeting="false" start="2022-09-02" duration="2" complete="0" thirdDate="2022-08-19" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="9" name="Implementation" color="#cccccc" meeting="false" start="2022-09-06" duration="23" complete="0" thirdDate="2022-08-25" thirdDate-constraint="0" expand="true">
+            <task id="34" name="Create testing plan" color="#cccccc" meeting="false" start="2022-09-06" duration="3" complete="0" thirdDate="2022-08-17" thirdDate-constraint="1" expand="true">
+                <depend id="41" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="41" name="Create GUI according to design specs" color="#cccccc" meeting="false" start="2022-09-09" duration="5" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true">
+                <depend id="36" type="2" difference="0" hardness="Strong"/>
+                <depend id="40" type="1" difference="0" hardness="Strong"/>
+            </task>
+            <task id="40" name="Create members for data management" color="#cccccc" meeting="false" start="2022-09-09" duration="2" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true">
+                <depend id="39" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="39" name="Test Objects and methods" color="#cccccc" meeting="false" start="2022-09-13" duration="3" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true">
+                <depend id="38" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="38" name="Create module for completing required features" color="#cccccc" meeting="false" start="2022-09-16" duration="5" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true">
+                <depend id="37" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="37" name="Test all features with existing datasets" color="#cccccc" meeting="false" start="2022-09-23" duration="4" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true">
+                <depend id="36" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="36" name="Attach object methods to GUI Interface" color="#cccccc" meeting="false" start="2022-09-29" duration="3" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true">
+                <depend id="35" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="35" name="Test functionality with all GUI inputs" color="#cccccc" meeting="false" start="2022-10-04" duration="3" complete="0" thirdDate="2022-08-17" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Zak Cobham-Davis" function="Default:1" contacts="" phone="">
+            <rate name="standard" value="64"/>
+        </resource>
+        <resource id="1" name="William Crane" function="Default:1" contacts="" phone="">
+            <rate name="standard" value="63"/>
+        </resource>
+        <resource id="2" name="Christopher Linnett" function="Default:1" contacts="" phone="">
+            <rate name="standard" value="63.69"/>
+        </resource>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="1" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="2" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="4" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="12" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="14" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="13" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="34" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="40" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="39" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="35" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="38" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="32" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="31" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="29" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="23" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="22" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="30" resource-id="0" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="1" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="2" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="4" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="12" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="14" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="13" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="15" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="35" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="37" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="25" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="21" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="33" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="20" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="18" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="40" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="36" resource-id="1" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="0" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="1" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="2" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="4" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="12" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="14" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="13" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="19" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="16" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="28" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="27" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="26" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="24" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="34" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="41" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="39" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="35" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="38" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="36" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="17" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+        <allocation task-id="37" resource-id="2" function="Default:1" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
