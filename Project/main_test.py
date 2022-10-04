@@ -3,6 +3,7 @@ import unittest
 from report import Report
 from Algorithm import Algorithm
 from dataset import Dataset
+from main import Controller
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -86,5 +87,43 @@ class AlgorithmTest(unittest.TestCase):
         self.assertEqual(type(algorithm.singleOffenceTrend(datetime.date(2012, 1, 1), datetime.date(2012, 1, 1), True, "a")),
                          dict, "Test incorrect type on offence code input for singleOffenceTrend method in Algorithm class")
 
+class ControllerTest(unittest.TestCase):
+    controller = Controller(False)
 
+    def test_generateAllOffenceIsMobile(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), True, 1, None)), Report, "Test for generating all offence report")
+
+    def test_generateAllOffenceNotMobile(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, 1, None)), Report, "Test for generating all offence report")
+    
+    def test_generateRadCamIsMobile(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), True, 2, None)), Report, "Test for generating all offence report")
+    
+    def test_generateRadCamNotMobile(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, 2, None)), Report, "Test for generating all offence report")
+    
+    def test_generateDistIsMobile(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), True, 3, None)), Report, "Test for generating all offence report")
+    
+    def test_generateDistNotMobile(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, 3, None)), Report, "Test for generating all offence report")
+    
+    def test_generateTrendIsMobileOffenceCode(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), True, 4, 74701)), Report, "Test for generating all offence report")
+    
+    def test_generateTrendIsMobileNoOffenceCode(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), True, 4, None)), Report, "Test for generating all offence report")
+    
+    def test_generateTrendNotMobileOffenceTrend(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, 4, 74701)), Report, "Test for generating all offence report")
+    
+    def test_generateTrendNotMobileNoOffenceCode(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, 4, None)), Report, "Test for generating all offence report")
+    
+    def test_incorrectTypeReportID(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, "four", None)), Report, "Test for generating all offence report")
+    
+    def test_outOfRangeReportID(self):
+        self.assertEqual(type(self.controller.callAlgorithm(datetime.date(2012, 1, 1), datetime.date(2013, 1, 1), False, -3, None)), Report, "Test for generating all offence report")
+    
 unittest.main()

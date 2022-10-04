@@ -1,4 +1,4 @@
-import dataset as Dataset
+from dataset import Dataset
 from Algorithm import Algorithm
 from report import Report
 from gui import Gui
@@ -6,8 +6,12 @@ import pandas as pd
 
 
 class Controller():
-    def __init__(self):
-        self.dataset = Dataset.Dataset()
+    def __init__(self, generateGui):
+        self.dataset = Dataset()
+        if generateGui:
+            self.drawGui()
+
+    def drawGui(self):
         self.root = Gui(self)
         self.root.mainloop()
 
@@ -38,15 +42,18 @@ class Controller():
         else:
             output = pd.DataFrame([])
         self.report = Report(output)
-        if reportID == 3:
-            self.root.resultsPlotWindow(
-                self.report.generatePlot(isTrend=False), f"Distribution of All Offence Codes between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}{' Involving a Mobile Device' if isMobile else ''}")
-        if reportID == 4:
-            self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True), f"Monthly Trend of {offenceCode if offenceCode else 'All Offences'}{' Involving a Mobile Device ' if isMobile else ''}between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}")
-        if (reportID == 1 or reportID == 2):
-            self.root.resultsTableWindow(self.report.getReportData(), f"All offences {'involving radar/camera ' if (reportID == 2) else ''}between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}{' with a Mobile Device ' if isMobile else ''}")
-
+        try:
+            if reportID == 3:
+                self.root.resultsPlotWindow(
+                    self.report.generatePlot(isTrend=False), f"Distribution of All Offence Codes between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}{' Involving a Mobile Device' if isMobile else ''}")
+            if reportID == 4:
+                self.root.resultsPlotWindow(self.report.generatePlot(isTrend=True), f"Monthly Trend of {offenceCode if offenceCode else 'All Offences'} {'Involving a Mobile Device ' if isMobile else ''}between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}")
+            if (reportID == 1 or reportID == 2):
+                self.root.resultsTableWindow(self.report.getReportData(), f"All offences {'involving radar/camera ' if (reportID == 2) else ''}between {startDate.strftime('%B, %Y')} and {endDate.strftime('%B, %Y')}{' with a Mobile Device ' if isMobile else ''}")
+        except:
+            print("Unable to generate window")
+            pass
         return self.report
 
-
-program = Controller()
+if __name__ == "__main__":
+    program = Controller(True)
