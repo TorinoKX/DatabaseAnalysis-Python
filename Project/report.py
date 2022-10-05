@@ -41,10 +41,10 @@ class Report():
         ax = figure.add_subplot(111)
         if isTrend:
             ax.plot(all_keys, all_values, marker="s")
-            ax.set(xlabel="Dates (Month/Years)", ylabel="Offence Frequency")
+            ax.set(xlabel="Dates (Month/Year)", ylabel="Number of Offences")
         else:
             ax.bar(all_keys, all_values)
-            ax.set(xlabel="Offence Code", ylabel="Offence Instances")
+            ax.set(xlabel="Offence Code", ylabel="Number of Offences")
 
 
         ax.yaxis.set_major_locator(MaxNLocator(integer=True))
