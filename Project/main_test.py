@@ -23,7 +23,6 @@ class DatasetTests(unittest.TestCase):
 
         self.test_gettingNonExistentData = Dataset()
         self.test_gettingNonExistentData.loadedData = pd.DataFrame([])
-        print(self.test_gettingNonExistentData.getData())
         self.assertEqual(type(self.test_gettingNonExistentData.getData()), pd.DataFrame,
                          'Testing the program can handle a request to return the dataset even if it is not in memory')
 

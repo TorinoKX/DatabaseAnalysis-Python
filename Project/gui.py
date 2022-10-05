@@ -224,7 +224,6 @@ class Gui(Tk):
         isMobile = self.mobileBool.get()
         reportID = self.reportOptions.index(self.reportVar.get())
         offenceCode = self.codeSelectionText.get()
-        # print(f"start_date: {startDate}, end_Date: {endDate}, isMobile: {isMobile}, reportOption: {reportID}")
         self.parent.callAlgorithm(startDate, endDate, isMobile, reportID, int(
             offenceCode) if offenceCode else None)
 
